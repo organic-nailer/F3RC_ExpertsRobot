@@ -4,6 +4,7 @@ int8_t ufo(int8_t a);
 
 Wheel::Wheel(Motor &_FR, Motor &_FL, Motor &_RR, Motor &_RL, uint32_t _pow) : FR(_FR), FL(_FL), RR(_RR), RL(_RL), pow(_pow)
 {
+
 }
 
 void Wheel::Brake(void)
@@ -13,6 +14,9 @@ void Wheel::Brake(void)
     RR.Brake();
     RL.Brake();
 }
+
+//見る限り南と北、東と西が逆なのでは...?
+//要確認だね
 
 void Wheel::North(uint32_t pulsewidth)
 {
@@ -102,12 +106,15 @@ void Wheel::joystick(int8_t x, int8_t y){
         switch(yu){
             case -1:
                 //南西
+                SouthWest(50);
                 break;
             case 0:
                 //西
+                West(50);
                 break;
             case 1:
                 //北西
+                NorthWest(50);
                 break;
         }
     }
@@ -116,12 +123,15 @@ void Wheel::joystick(int8_t x, int8_t y){
         {
         case -1:
             //南
+            South(50);
             break;
         case 0:
             //ブレーキ
+            Brake();
             break;
         case 1:
             //北
+            North(50);
             break;
         }
     }
@@ -130,12 +140,15 @@ void Wheel::joystick(int8_t x, int8_t y){
         {
         case -1:
             //北東
+            NorthEast(50);
             break;
         case 0:
             //東
+            East(50);
             break;
         case 1:
             //南東
+            SouthEast(50);
             break;
         }
     }

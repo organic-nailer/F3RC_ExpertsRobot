@@ -10,28 +10,25 @@
 
 namespace
 {
-//足回り
-  PwmOut wpout[4] = {
-    PwmOut(PC_8),
-    PwmOut(PC_9),
-    PwmOut(PA_5),
-    PwmOut(PB_3)
-  };
-  //ピンを追加する！
-  DigitalOut wdout[4] = {
-    DigitalOut(PA_0),
-    DigitalOut(PA_0),
-    DigitalOut(PA_0),
-    DigitalOut(PA_0)
-  }; 
+  //足回り
   uint32_t WHEEL_POWER = 100;
-  Motor motor[4] = {
-    Motor(wpout[0], wdout[0], WHEEL_POWER, true),
-    Motor(wpout[1], wdout[1], WHEEL_POWER, true),
-    Motor(wpout[2], wdout[2], WHEEL_POWER, true),
-    Motor(wpout[3], wdout[3], WHEEL_POWER, true)
-  };
-  Wheel wheel(motor[0], motor[1], motor[2], motor[3], 150);
+
+  PwmOut FRpout(PA_8); //MD1
+  PwmOut FLpout(PA_0); //MD2
+  PwmOut RRpout(PA_6); //MD3
+  PwmOut RLpout(PB_6); //MD4
+
+  DigitalOut FRdout(PC_11);
+  DigitalOut FLdout(PD_2);
+  DigitalOut RRdout(PC_9);
+  DigitalOut RLdout(PB_9);
+
+  Motor FRmotor(FRpout, FRdout, WHEEL_POWER, true);
+  Motor FLmotor(FLpout, FLdout, WHEEL_POWER, true);
+  Motor RRmotor(RRpout, RRdout, WHEEL_POWER, true);
+  Motor RLmotor(RLpout, RLdout, WHEEL_POWER, true);
+
+  Wheel wheel(FRmotor, FLmotor, RRmotor, RLmotor, 150);
 
   //アーム
   PwmOut EPwm(PB_13);
