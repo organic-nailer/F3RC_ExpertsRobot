@@ -17,7 +17,7 @@ public:
         PwmOut &PWM_PIN, 
         DigitalOut &DIN1_PIN, 
         DigitalOut &DIN2_PIN, 
-        uint32_t pwmout_period, bool direction);
+        uint32_t pwmout_period = 100, bool direction = true);
 
     void Brake(void);
     void CW(uint32_t pulsewidth);

@@ -4,7 +4,7 @@ RoboMotor::RoboMotor(
     PwmOut &PWM_PIN, 
     DigitalOut &DIN1_PIN,
     DigitalOut &DIN2_PIN,
-    uint32_t pwmout_period = 100,
+    uint32_t pwmout_period,
     bool direction): PWM(PWM_PIN), DIN1(DIN1_PIN), DIN2(DIN2_PIN), PWM_PERIOD(pwmout_period), DIRECTION(direction)
     {
         PWM.period_us(PWM_PERIOD);

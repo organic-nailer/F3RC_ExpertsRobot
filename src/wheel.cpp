@@ -154,6 +154,26 @@ void Wheel::joystick(int8_t x, int8_t y){
     }
 }
 
+void Wheel::joystickRotate(int8_t x){
+    auto xu = ufo(x);
+
+    switch (xu)
+    {
+    case -1:
+        //反時計回り
+        rotate_left(50);
+        break;
+    case 0:
+        //ブレーキ
+        Brake();
+        break;
+    case 1:
+        //時計回り
+        rotate_right(50);
+        break;
+    }
+}
+
 int8_t ufo(int8_t a){
     if(a > 33){
         return 1;
