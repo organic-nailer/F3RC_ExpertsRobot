@@ -1,15 +1,16 @@
 #include <mbed.h>
-#include "motor.h"
+#include "robo_motor.h"
 
 //手動機アーム
 
 class ExpertsArm
 {
 private:
-    Motor &Elevate, &Pinch;
+    RoboMotor &Elevate, &Pinch;
+    DigitalOut &STBY;
 
-private:
-    ExpertsArm(Motor &, Motor &);
+public:
+    ExpertsArm(RoboMotor &, RoboMotor &, DigitalOut &stby);
 
     void EBrake(void);
     void PBrake(void);
