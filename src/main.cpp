@@ -34,22 +34,18 @@ namespace
   Wheel wheel(motor[0], motor[1], motor[2], motor[3], 150);
 
   //アーム
-  PwmOut apout[2] = {
-    PwmOut(PC_0),
-    PwmOut(PC_0)
-  };
-  DigitalOut adout[5] = {
-      DigitalOut(PA_0),
-      DigitalOut(PA_0),
-      DigitalOut(PA_0),
-      DigitalOut(PA_0),
-      DigitalOut(PA_0)
-  };
-  RoboMotor Rmotor[2] = {
-    RoboMotor(apout[0], adout[0], adout[1], 100, true),
-    RoboMotor(apout[1], adout[2], adout[3], 100, true)
-  };
-  ExpertsArm arm(Rmotor[0], Rmotor[1], adout[4]);
+  PwmOut EPwm(PB_13);
+  PwmOut PPwm(PB_14);
+
+  DigitalOut EdIn1(PA_9);
+  DigitalOut EdIn2(PA_7);
+  DigitalOut PdIn1(PB_5);
+  DigitalOut PdIn2(PB_10);
+  DigitalOut Rstby(PA_1);
+
+  RoboMotor Emotor(EPwm, EdIn1, EdIn2, 100, true);
+  RoboMotor Pmotor(PPwm, PdIn1, PdIn2, 100, true);
+  ExpertsArm arm(Emotor, Pmotor, Rstby);
 
   //コントローラー
   CAN can1(PA_11, PA_12, 500000);
