@@ -164,8 +164,7 @@ void Wheel::joystickRotate(int8_t x){
         rotate_left(50);
         break;
     case 0:
-        //ブレーキ
-        Brake();
+        //なにもしない
         break;
     case 1:
         //時計回り
