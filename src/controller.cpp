@@ -28,6 +28,8 @@ void Controller::recieveData() {
   }
 }
 
+//QUESTION: dataってどんな形で来るの？
+
 void Controller::parse(const uint8_t* data, const size_t length) {
   axes.x = ((int8_t) data[0] > 5 || (int8_t) data[0] < -5) ? (int8_t) data[0] : 0;
   axes.y = ((int8_t) data[1] > 5 || (int8_t) data[1] < -5) ? (int8_t) data[1] : 0;
