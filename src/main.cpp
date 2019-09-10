@@ -8,6 +8,8 @@
 
 #include "controller.h"
 
+void ControllerCheck(vector<int8_t> axes, vector<bool> buttons);
+
 namespace
 {
   //足回り
@@ -51,6 +53,8 @@ namespace
   //その他
   float CLOCK = 0.5;
 
+  Serial pc(USBTX, USBRX);
+
 } // namespace
 
 int main() {
@@ -69,6 +73,12 @@ int main() {
     BT_B = controller.buttons[2];
     BT_X = controller.buttons[0];
     BT_Y = controller.buttons[3];
+
+    //コントローラデバッグ
+    ControllerCheck(
+      vector<int8_t>{ JS1_X, JS1_Y, JS2_X, JS2_Y },
+      controller.buttons
+    );
 
     if(BT_B){
       //アーム開
@@ -93,4 +103,13 @@ int main() {
 
     wait(CLOCK);
   }
+}
+
+void ControllerCheck(vector<int8_t> axes, vector<bool> buttons){
+  pc.printf("AXES: %d , %d , %d , %d \n", axes[0], axes[1], axes[2], axes[3]);
+  pc.printf("BUTTONS: ");
+  for(int i = 0; i < buttons.size; i++){
+    pc.printf(" %d ,", buttons[i]);
+  }
+  pc.printf("\n");
 }
