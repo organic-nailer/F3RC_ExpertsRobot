@@ -10,7 +10,7 @@
 class Controller {
   public:
     Controller(CAN&, const uint32_t);
-    struct {int8_t x; int8_t y; int8_t z; int8_t rz;} axes = {};
+    struct {int8_t LX; int8_t LY; int8_t RX; int8_t RY;} axes = {};
     std::vector<bool> buttons;
     void setButtonEventListener(Callback<void(size_t, bool)>);
   private:
