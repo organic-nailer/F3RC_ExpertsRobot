@@ -10,6 +10,7 @@
 
 void ControllerCheck(vector<int8_t> axes, vector<bool> buttons);
 
+
 namespace
 {
   //足回り
@@ -108,7 +109,7 @@ int main() {
 void ControllerCheck(vector<int8_t> axes, vector<bool> buttons){
   pc.printf("AXES: %d , %d , %d , %d \n", axes[0], axes[1], axes[2], axes[3]);
   pc.printf("BUTTONS: ");
-  for(int i = 0; i < buttons.size; i++){
+  for(int i = 0; i < buttons.size(); i++){
     pc.printf(" %d ,", buttons[i]);
   }
   pc.printf("\n");
