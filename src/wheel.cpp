@@ -98,7 +98,7 @@ void Wheel::rotate_left(uint32_t pulsewidth)
     RL.CW(pulsewidth);
 }
 
-void Wheel::joystick(int8_t x, int8_t y){
+void Wheel::joystick(int8_t x, int8_t y, Serial pc){
     auto xu = ufo(x);
     auto yu = ufo(y);
 
@@ -106,15 +106,18 @@ void Wheel::joystick(int8_t x, int8_t y){
         switch(yu){
             case -1:
                 //南西
-                SouthWest(50);
+                //SouthWest(50);
+                pc.printf("Wheel: SOUTHWEST");
                 break;
             case 0:
                 //西
-                West(50);
+                //West(50);
+                pc.printf("Wheel: WEST");
                 break;
             case 1:
                 //北西
-                NorthWest(50);
+                //NorthWest(50);
+                pc.printf("Wheel: NORTHWEST");
                 break;
         }
     }
@@ -123,15 +126,18 @@ void Wheel::joystick(int8_t x, int8_t y){
         {
         case -1:
             //南
-            South(50);
+            //South(50);
+            pc.printf("Wheel: SOUTH");
             break;
         case 0:
             //ブレーキ
             Brake();
+            pc.printf("Wheel: BRAKE");
             break;
         case 1:
             //北
-            North(50);
+            //North(50);
+            pc.printf("Wheel: NORTH");
             break;
         }
     }
@@ -140,35 +146,41 @@ void Wheel::joystick(int8_t x, int8_t y){
         {
         case -1:
             //北東
-            NorthEast(50);
+            //NorthEast(50);
+            pc.printf("Wheel: NORTHEAST");
             break;
         case 0:
             //東
-            East(50);
+            //East(50);
+            pc.printf("Wheel: EAST");
             break;
         case 1:
             //南東
-            SouthEast(50);
+            //SouthEast(50);
+            pc.printf("Wheel: SOUTHEAST");
             break;
         }
     }
 }
 
-void Wheel::joystickRotate(int8_t x){
+void Wheel::joystickRotate(int8_t x, Serial pc){
     auto xu = ufo(x);
 
     switch (xu)
     {
     case -1:
         //反時計回り
-        rotate_left(50);
+        //rotate_left(50);
+        pc.printf("Wheel: ROTATECW");
         break;
     case 0:
         //なにもしない
+        pc.printf("WHEEL: NULL");
         break;
     case 1:
         //時計回り
-        rotate_right(50);
+        //rotate_right(50);
+        pc.printf("WHEEL: ROTATECCW");
         break;
     }
 }

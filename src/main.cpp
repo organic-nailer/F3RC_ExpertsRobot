@@ -83,24 +83,28 @@ int main() {
 
     if(BT_B){
       //アーム開
-      arm.Open(50);
+      //arm.Open(50);
+      pc.printf("arm: OPEN \n");
     }
     else if(BT_X){
       //アーム閉
-      arm.Close(50);
+      //arm.Close(50);
+      pc.printf("arm: CLOSE \n");
     }
 
     if(BT_Y){
       //アーム上
-      arm.Up(50);
+      //arm.Up(50);
+      pc.printf("arm: UP \n");
     }
     else if(BT_A){
       //アーム下
-      arm.Down(50);
+      //arm.Down(50);
+      pc.printf("arm: DOWN \n");
     }
 
-    wheel.joystick(JS1_X, JS1_Y); //オムニ8方制御
-    wheel.joystickRotate(JS2_X); //オムニ回転制御
+    wheel.joystick(JS1_X, JS1_Y, pc); //オムニ8方制御
+    wheel.joystickRotate(JS2_X, pc); //オムニ回転制御
 
     wait(CLOCK);
   }

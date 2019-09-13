@@ -29,6 +29,6 @@ public:
     void rotate_right(uint32_t PulseWidth);
     void rotate_left(uint32_t PulseWidth);
 
-    void joystick(int8_t x, int8_t y);
-    void joystickRotate(int8_t x);
+    void joystick(int8_t x, int8_t y, Serial pc);
+    void joystickRotate(int8_t x, Serial pc);
 };
