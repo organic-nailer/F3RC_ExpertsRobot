@@ -89,6 +89,9 @@ int main() {
       //アーム閉
       arm.Close(50);
     }
+    else{
+      arm.PBrake();
+    }
 
     if(BT_Y){
       //アーム上
@@ -97,6 +100,9 @@ int main() {
     else if(BT_A){
       //アーム下
       arm.Down(50);
+    }
+    else{
+      arm.EBrake();
     }
 
     wheel.joystick(JS1_X, JS1_Y); //オムニ8方制御
