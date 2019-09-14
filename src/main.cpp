@@ -81,6 +81,36 @@ int main() {
       controller.buttons
     );
 
+    if(!JS1_X && !JS1_Y && !JS2_X && !JS2_Y){
+      wheel.Brake();
+      arm.EBrake();
+      arm.PBrake();
+      continue;
+    }
+
+    if(JS2_Y < 50 && JS2_Y > -50){
+      if(JS2_X > 50){
+        wheel.rotate_right(50);
+      }
+      else if(JS2_X < -50){
+        wheel.rotate_left(50);
+      }
+    }
+
+    if(JS2_X > 50 && JS2_Y > 50){
+      arm.Up(50);
+    }
+    else if(JS2_X < -50 && JS2_Y < -50){
+      arm.Down(50);
+    }
+
+    if(JS2_X < -50 && JS2_Y > 50){
+      arm.Open(50);
+    }
+    else if(JS2_X > 50 && JS2_Y < -50){
+      arm.Open(50);
+    }
+/*
     if(BT_B){
       //アーム開
       arm.Open(50);
@@ -104,9 +134,9 @@ int main() {
     else{
       arm.EBrake();
     }
-
+*/
     wheel.joystick(JS1_X, JS1_Y); //オムニ8方制御
-    wheel.joystickRotate(JS2_X); //オムニ回転制御
+    //wheel.joystickRotate(JS2_X); //オムニ回転制御
 
     wait(CLOCK);
   }

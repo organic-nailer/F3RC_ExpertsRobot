@@ -179,7 +179,7 @@ void Wheel::joystickAdv(int8_t x, int8_t y, uint32_t maxPW){
     double stickLen = sqrt(y*y+ x*x);
     double maxLen = 100 * sqrt(2);
 
-    double se = cos(abs(stickRad - 3.1416 / 4)) * stickLen / maxLen * maxPW;
+    double se = cos(abs(stickRad - 3.1416 * 0.25)) * stickLen / maxLen * maxPW;
     if(se > 0) RR.CW(se);
     else if(se == 0) RR.Brake();
     else RR.CCW(-se);
