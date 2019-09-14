@@ -224,10 +224,10 @@ void Wheel::joystickAdv(int8_t x, int8_t y, uint32_t maxPW){
 }
 
 int8_t ufo(int8_t a){
-    if(a > 33){
+    if(a > 60){
         return 1;
     }
-    else if(a < -33){
+    else if(a < -60){
         return -1;
     }
     else{
