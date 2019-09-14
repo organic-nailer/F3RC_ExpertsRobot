@@ -21,6 +21,7 @@ void Wheel::Brake(void)
 
 void Wheel::North(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.CW(pulsewidth);
     FL.CCW(pulsewidth);
     RR.CW(pulsewidth);
@@ -29,6 +30,7 @@ void Wheel::North(uint32_t pulsewidth)
 
 void Wheel::East(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.CCW(pulsewidth);
     FL.CCW(pulsewidth);
     RR.CW(pulsewidth);
@@ -37,6 +39,7 @@ void Wheel::East(uint32_t pulsewidth)
 
 void Wheel::West(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.CW(pulsewidth);
     FL.CW(pulsewidth);
     RR.CCW(pulsewidth);
@@ -45,6 +48,7 @@ void Wheel::West(uint32_t pulsewidth)
 
 void Wheel::South(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.CCW(pulsewidth);
     FL.CW(pulsewidth);
     RR.CCW(pulsewidth);
@@ -53,6 +57,7 @@ void Wheel::South(uint32_t pulsewidth)
 
 void Wheel::NorthEast(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.Brake();
     FL.CCW(pulsewidth);
     RR.CW(pulsewidth);
@@ -61,6 +66,7 @@ void Wheel::NorthEast(uint32_t pulsewidth)
 
 void Wheel::NorthWest(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.CW(pulsewidth);
     FL.Brake();
     RR.Brake();
@@ -69,6 +75,7 @@ void Wheel::NorthWest(uint32_t pulsewidth)
 
 void Wheel::SouthEast(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.CCW(pulsewidth);
     FL.Brake();
     RR.Brake();
@@ -77,6 +84,7 @@ void Wheel::SouthEast(uint32_t pulsewidth)
 
 void Wheel::SouthWest(uint32_t pulsewidth)
 {
+    mode = 1;
     FR.Brake();
     FL.CW(pulsewidth);
     RR.CCW(pulsewidth);
@@ -85,18 +93,20 @@ void Wheel::SouthWest(uint32_t pulsewidth)
 
 void Wheel::rotate_right(uint32_t pulsewidth)
 {
-    FR.CCW(pulsewidth);
+    mode = 2;
+    FR.CW(pulsewidth);
     FL.CCW(pulsewidth);
     RR.CCW(pulsewidth);
-    RL.CCW(pulsewidth);
+    RL.CW(pulsewidth);
 }
 
 void Wheel::rotate_left(uint32_t pulsewidth)
 {
-    FR.CW(pulsewidth);
+    mode = 2;
+    FR.CCW(pulsewidth);
     FL.CW(pulsewidth);
     RR.CW(pulsewidth);
-    RL.CW(pulsewidth);
+    RL.CCW(pulsewidth);
 }
 
 void Wheel::joystick(int8_t x, int8_t y){
@@ -128,7 +138,10 @@ void Wheel::joystick(int8_t x, int8_t y){
             break;
         case 0:
             //ブレーキ
-            Brake();
+            if(mode == 1)
+            {
+                Brake();
+            }
             break;
         case 1:
             //北
@@ -166,6 +179,9 @@ void Wheel::joystickRotate(int8_t x){
         break;
     case 0:
         //なにもしない
+        if(mode == 2){
+            Brake();
+        }
         break;
     case 1:
         //時計回り

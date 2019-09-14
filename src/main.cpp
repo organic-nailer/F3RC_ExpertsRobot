@@ -17,19 +17,19 @@ namespace
   uint32_t WHEEL_POWER = 100;
 
   PwmOut FRpout(PA_8); //MD1
-  PwmOut FLpout(PA_0); //MD2
-  PwmOut RRpout(PA_6); //MD3
+  PwmOut FLpout(PA_6); //MD2
+  PwmOut RRpout(PA_0); //MD3
   PwmOut RLpout(PB_6); //MD4
 
   DigitalOut FRdout(PC_11);
-  DigitalOut FLdout(PD_2);
-  DigitalOut RRdout(PC_9);
+  DigitalOut FLdout(PC_9);
+  DigitalOut RRdout(PD_2);
   DigitalOut RLdout(PB_9);
 
-  Motor FRmotor(FRpout, FRdout, WHEEL_POWER, true);
+  Motor FRmotor(FRpout, FRdout, WHEEL_POWER, false);
   Motor FLmotor(FLpout, FLdout, WHEEL_POWER, true);
   Motor RRmotor(RRpout, RRdout, WHEEL_POWER, true);
-  Motor RLmotor(RLpout, RLdout, WHEEL_POWER, true);
+  Motor RLmotor(RLpout, RLdout, WHEEL_POWER, false);
 
   Wheel wheel(FRmotor, FLmotor, RRmotor, RLmotor, 150);
 
@@ -38,7 +38,7 @@ namespace
   PwmOut PPwm(PB_14);
 
   DigitalOut EdIn1(PA_9);
-  DigitalOut EdIn2(PA_7);
+  DigitalOut EdIn2(PB_1);
   DigitalOut PdIn1(PB_5);
   DigitalOut PdIn2(PB_10);
   DigitalOut Rstby(PA_1);
@@ -115,8 +115,8 @@ int main() {
 void ControllerCheck(vector<int8_t> axes, vector<bool> buttons){
   pc.printf("AXES: %d , %d , %d , %d \n", axes[0], axes[1], axes[2], axes[3]);
   pc.printf("BUTTONS: ");
-  for(int i = 0; i < buttons.size(); i++){
-    pc.printf(" %d ,", buttons[i]);
+  for(uint8_t i = 0; i < buttons.size(); i++){
+    pc.printf(" %s ,", buttons[i] ? "T" : "F");
   }
   pc.printf("\n");
 }
