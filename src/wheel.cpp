@@ -1,4 +1,5 @@
 #include "wheel.h"
+#include <math.h>
 
 int8_t ufo(int8_t a);
 
@@ -171,6 +172,39 @@ void Wheel::joystickRotate(int8_t x){
         rotate_right(50);
         break;
     }
+}
+
+void Wheel::joystickAdv(int8_t x, int8_t y, uint32_t maxPW){
+    double stickRad = atan2(y,x);
+    double stickLen = sqrt(y*y+ x*x);
+    double maxLen = 100 * sqrt(2);
+
+    double se = cos(abs(stickRad - 3.1416 / 4)) * stickLen / maxLen * maxPW;
+    if(se > 0) RR.CW(se);
+    else if(se == 0) RR.Brake();
+    else RR.CCW(-se);
+
+    double ne = cos(abs(stickRad - 3.1416 * 0.75)) * stickLen / maxLen * maxPW;
+    if (ne > 0)
+        FR.CW(ne);
+    else if (ne == 0)
+        FR.Brake();
+    else
+        FR.CCW(-ne);
+    double nw = cos(abs(stickRad + 3.1416 * 0.75)) * stickLen / maxLen * maxPW;
+    if (nw > 0)
+        FL.CW(nw);
+    else if (nw == 0)
+        FL.Brake();
+    else
+        FL.CCW(-nw);
+    double sw = cos(abs(stickRad + 3.1416 * 0.25)) * stickLen / maxLen * maxPW;
+    if (sw > 0)
+        FR.CW(sw);
+    else if (sw == 0)
+        FR.Brake();
+    else
+        FR.CCW(-sw);
 }
 
 int8_t ufo(int8_t a){

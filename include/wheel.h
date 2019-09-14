@@ -31,4 +31,6 @@ public:
 
     void joystick(int8_t x, int8_t y);
     void joystickRotate(int8_t x);
+
+    void joystickAdv(int8_t x, int8_t y, uint32_t maxPW);
 };
