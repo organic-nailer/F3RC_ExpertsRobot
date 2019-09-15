@@ -34,7 +34,7 @@ namespace
   Wheel wheel(FRmotor, FLmotor, RRmotor, RLmotor, 150);
 
   //アーム
-  PwmOut EPwm(PB_13);
+  PwmOut EPwm(PB_15); // 元々PB_!3
   PwmOut PPwm(PB_14);
 
   DigitalOut EdIn1(PA_9);
@@ -83,11 +83,11 @@ int main() {
 
     if(BT_B){
       //アーム開
-      arm.Open(50);
+      arm.Open(10);
     }
     else if(BT_X){
       //アーム閉
-      arm.Close(50);
+      arm.Close(10);
     }
     else{
       arm.PBrake();
@@ -95,11 +95,11 @@ int main() {
 
     if(BT_Y){
       //アーム上
-      arm.Up(50);
+      arm.Up(10);
     }
     else if(BT_A){
       //アーム下
-      arm.Down(50);
+      arm.Down(10);
     }
     else{
       arm.EBrake();
