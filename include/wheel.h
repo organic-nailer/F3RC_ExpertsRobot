@@ -12,6 +12,7 @@ class Wheel
 private:
     Motor &FR, &FL, &RR, &RL; // FrontRight, FrontLeft, RearRight, RearLeft
     const uint32_t pow;
+    uint8_t mode;
 
 public:
     /* Constructor */
